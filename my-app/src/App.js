@@ -34,42 +34,6 @@ class App extends Component {
     })
   }
 
-  searchWords(e){
-    e.preventDefault();
-    let search = document.querySelector('#wordsAPI input').value.trim();
-    const base = 'https://wordsapiv1.p.rapidapi.com/words/';
-    let url = base + search + '/synonyms';
-    let config = {
-      method:'GET',
-      headers:{
-        'X-RapidAPI-Host': 'wordsapiv1.p.rapidapi.com',
-        'X-RapidAPI-Key': '7f47278606msh2f4decc70aaedf7p196c3ejsn7af7ba58ab09'
-      }
-    }
-    fetch(url, config)
-    .then(function(response){
-      if(!response.ok){
-        throw Error(response.statusText);
-      }
-      return response.json();
-    })
-    .then(function(data){
-      console.log(data);
-      let results = document.querySelector('#wordsAPI .results');
-      let synonyms = '';
-      let max = data.synonyms.length;
-      for(let i=0; i < max; i++){
-        synonyms += data.synonyms[i];
-        synonyms += ', ';
-      }
-      synonyms += data.synonyms[max];
-      results.innerHTML = 'Synonyms found: ' + synonyms;
-    })
-    .catch(function(error){
-      console.log('Something went wrong: ' + error);
-    })
-  }
-
   render(){
     return (
       <div className="App">
@@ -82,14 +46,6 @@ class App extends Component {
           <SearchForm submit={this.searchRecipe} default="eggs"/>
           <p className='results'></p>
         </section>
-
-        <section id="wordsAPI">
-          <h2>Words API Example</h2>
-          <p>Search for the synonym of a word:</p>
-          <SearchForm submit={this.searchWords} default="happy"/>
-          <p className='results'></p>
-        </section>
-      </div>
     );
   }
 }
