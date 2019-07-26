@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import Btn from '../btn/Btn';
 
 
-class Header extends Component {
+class Ingredient extends Component {
   render(){
     return (
       <div data-index={this.props.index}>
@@ -14,4 +14,4 @@ class Header extends Component {
   }
 }
 
-export default Header;
+export default Ingredient;

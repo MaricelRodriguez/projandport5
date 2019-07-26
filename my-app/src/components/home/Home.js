@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+import './Home.css';
+
 import Title from '../title/Title';
 import Btn from '../btn/Btn';
 
