@@ -5,6 +5,8 @@ import Home from './components/home/Home';
 import Form from './components/form/Form';
 import RecipeCard from './components/recipeCard/RecipeCard';
 import Recipe from './components/recipe/Recipe';
+import Recipes from './components/recipes/Recipes';
+import RecipeInfo from './components/recipeInfo/RecipeInfo';
 
 class App extends Component {
   constructor(props){
@@ -103,7 +105,11 @@ class App extends Component {
         recipeList.push(data[i]);
       }
 
-      _this.setState({recipes: recipeList});
+      let recipes = recipeList.map(function(recipe, index){
+        return <RecipeCard key={index} select={recipe.select} id={recipe.id} title={recipe.title} image={recipe.image}/>
+      });
+
+      _this.setState({recipes: recipes});
       _this.setState({page: 'recipes'});
     })
     .catch(function(error){
@@ -164,7 +170,7 @@ class App extends Component {
       console.log('In Fetch this: ' + this);
       console.log('In Fetch _this: ' + _this);
       _this.setState({recipe: r});
-      _this.setState({page: 'recipe'});
+      _this.setState({page: 'recipeInfo'});
     })
     .catch(function(error){
       console.log('Something went wrong: ' + error);
@@ -185,13 +191,11 @@ class App extends Component {
         }
 
         {this.state.page === 'recipes' &&
-          this.state.recipes.map(function(recipe, index){
-            return <RecipeCard key={index} select={recipe.select} id={recipe.id} title={recipe.title} image={recipe.image}/>
-          })
+          <Recipes recipes={this.state.recipes}/>
         }
 
-        {this.state.page === 'recipe' &&
-          this.state.recipe
+        {this.state.page === 'recipeInfo' &&
+          <RecipeInfo recipe={this.state.recipe}/>
         }
       </div>
     );
