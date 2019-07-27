@@ -1,0 +1,36 @@
+button{
+  background-color: #C0DA74;
+  text-transform: uppercase;
+  border: none;
+  border-radius: 4px;
+  height: 45px;
+}
+
+button:disabled{
+  background-color: #CDD9A7;
+}
+
+.largeBtn{
+  width: 100%;
+}
+
+.smallBtn{
+  width: 85px;
+}
+
+.miniBtn{
+  background-color: rgba(0,0,0,0);
+  text-transform: none;
+  color: #C0DA74;
+  height: auto;
+  margin-top: 50px;
+  padding-top: 14px;
+}
+
+.closeBtn{
+  background-color: rgba(0,0,0,0);
+  text-transform: none;
+  color: #C0DA74;
+  height: auto;
+  padding-left: 10px;
+}

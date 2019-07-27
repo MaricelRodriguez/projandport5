@@ -1,17 +1,21 @@
 import React, { Component } from 'react';
 
+import './Ingredient.css';
+
 import Btn from '../btn/Btn';
 
 
-class Header extends Component {
+class Ingredient extends Component {
   render(){
     return (
-      <div data-index={this.props.index}>
+      <div className='ingredient' data-index={this.props.index}>
         <p>{this.props.text}</p>
-        <Btn hidden onClick={this.props.removeIngredient} type='button' text='X'/>
+        <div className='btnWrap'>
+          <Btn size='closeBtn' onClick={this.props.removeIngredient} type='button' text='X'/>
+        </div>
       </div>
     );
   }
 }
 
-export default Header;
+export default Ingredient;

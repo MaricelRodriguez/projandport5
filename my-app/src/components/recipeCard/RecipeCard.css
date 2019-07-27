@@ -1,0 +1,34 @@
+.bgWrap{
+  height: 100vh;
+  width: 100vw;
+  background-color: #BEBCB7;
+}
+
+h3{
+  font-weight: normal;
+  color: #C0DA74;
+  text-transform: uppercase;
+  font-size: 2.6rem;
+}
+
+.recipe{
+  min-height: 200px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-color: #0A090C;
+
+  margin: 10px 20px;
+  border-radius: 4px;
+}
+
+.recipe div{
+  min-height: 160px;
+  background-color: rgba(10,9,12,.5);
+  padding: 20px;
+
+  border-radius: 4px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
