@@ -13,6 +13,7 @@ class App extends Component {
     this.state = {
       page: 'home',
       ingredients: [],
+      btnDisabled: true,
       recipes: [],
       recipe: 0
     }
@@ -53,6 +54,11 @@ class App extends Component {
     let ingredientList = this.state.ingredients;
     let newIngredient = document.querySelector('#addIngredient').value.trim();
     ingredientList.push(newIngredient);
+
+    if(ingredientList.length > 0){
+      this.setState({btnDisabled: false});
+    }
+
     this.setState({ingredients: ingredientList});
   }
 
@@ -175,7 +181,7 @@ class App extends Component {
         }
 
         {this.state.page === 'ingredients' &&
-          <Form ingredients={this.state.ingredients} submit={this.addIngredient} search={this.searchRecipe}/>
+          <Form disabled={this.state.btnDisabled} ingredients={this.state.ingredients} submit={this.addIngredient} search={this.searchRecipe}/>
         }
 
         {this.state.page === 'recipes' &&

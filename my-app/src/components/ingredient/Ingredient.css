@@ -1,0 +1,18 @@
+.ingredient{
+  background-color: #fff;
+  color: #0A090C;
+  padding: 10px 20px;
+  border-radius: 25px;
+
+  display: flex;
+  flex-direction: row;
+  margin: 5px;
+}
+
+.btnWrap{
+  display: none;
+}
+
+.ingredient:hover > .btnWrap{
+  display: block;
+}
