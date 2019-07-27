@@ -9,8 +9,12 @@ class Recipe extends Component {
           <h3>{this.props.title}</h3>
           <img src={this.props.image} alt={this.props.title}/>
         </div>
-        {this.props.ingredientList}
-        {this.props.instructionsList}
+        <ul>
+          {this.props.ingredientList}
+        </ul>
+        <ol>
+          {this.props.instructionList}
+        </ol>
       </div>
     );
   }

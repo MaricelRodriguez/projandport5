@@ -149,20 +149,18 @@ class App extends Component {
 
       let ingredientData = data.extendedIngredients;
       let listItem;
-      let ingredientList = document.createElement('ul');
+      let ingredientList = [];
       for(let i=0; i< ingredientData.length; i++){
-        listItem = document.createElement('li');
-        listItem.innerHTML = ingredientData[i].metaInformation.original;
-        ingredientList.append(listItem);
+        listItem = <li key={'ingredient' + i}>{ingredientData[i].original}</li>;
+        ingredientList.push(listItem);
       }
 
       let instructionData = data.analyzedInstructions[0].steps;
       let instructionItem;
-      let instructionsList = document.createElement('ol');
+      let instructionsList = [];
       for(let i=0; i < instructionData.length; i++){
-        instructionItem = document.createElement('li');
-        instructionItem.innerHTML = instructionData[i].step;
-        instructionsList.append(instructionItem);
+        instructionItem = <li key={'instruction' + i}>{instructionData[i].step}</li>;
+        instructionsList.push(instructionItem);
       }
 
       let r = <Recipe data-id={data.id} title={data.title} time={data.readyInMinutes} image={data.image} ingredientList={ingredientList} instructionList={instructionsList} />;
