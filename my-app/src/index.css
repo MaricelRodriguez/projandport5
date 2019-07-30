@@ -23,4 +23,5 @@ body{
   background-repeat: no-repeat;
   background-size: cover;
   background-color: #0A090C;
+  background-attachment: fixed;
 }
