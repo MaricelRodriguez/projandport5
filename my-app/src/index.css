@@ -18,7 +18,7 @@ body, button{
 
 body{
   width: 100vw;
-  length: 100vh;
+  height: 100vh;
   background-image: url('./bg.jpg');
   background-repeat: no-repeat;
   background-size: cover;

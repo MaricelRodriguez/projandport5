@@ -12,6 +12,7 @@ button:disabled{
 
 .largeBtn{
   width: 100%;
+  height: 45px;
 }
 
 .smallBtn{

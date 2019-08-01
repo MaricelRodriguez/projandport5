@@ -9,7 +9,7 @@ class Recipes extends Component {
   render(){
     return (
 
-        <div className='flexWrapper'>
+        <div className='flexWrapper paddingAround'>
           <Header/>
           <div className='bgWrap'>
             {this.props.recipes}

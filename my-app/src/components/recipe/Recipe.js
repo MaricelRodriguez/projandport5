@@ -1,13 +1,22 @@
 import React, { Component } from 'react';
 
+import './Recipe.css';
+
+import Header from '../header/Header';
+
 class Recipe extends Component {
   render(){
+    let bgStyle = {
+      backgroundImage: 'url(' + this.props.image + ')'
+    }
     return (
-      <div data-id={this.props.id}>
-        <div>
-          <p>{this.props.time}</p>
-          <h3>{this.props.title}</h3>
-          <img src={this.props.image} alt={this.props.title}/>
+      <div className='paddingAround' data-id={this.props.id}>
+        <div style={bgStyle}>
+          <Header/>
+          <div>
+            <p>{this.props.time}</p>
+            <h3>{this.props.title}</h3>
+          </div>
         </div>
         <ul>
           {this.props.ingredientList}

@@ -9,7 +9,7 @@ class Home extends Component {
 
   render(){
     return (
-      <div className='flexWrapper home'>
+      <div className='flexWrapper home fullHeight paddingAround'>
         <Title/>
         <div>
           <p>Find recipes from ingredients you already have at home.</p>

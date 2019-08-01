@@ -10,7 +10,7 @@ class Form extends Component {
 
   render(){
     return (
-      <div className='flexWrapper'>
+      <div className='flexWrapper fullHeight paddingAround'>
         <Header/>
         <div className='wrapper'>
           <h2>Add Ingredients</h2>
