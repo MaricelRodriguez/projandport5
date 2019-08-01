@@ -13,7 +13,7 @@
 }
 
 .fullHeight{
-  height: calc(100vh - 40px);
+  min-height: calc(100vh - 40px);
 }
 
 .paddingAround{

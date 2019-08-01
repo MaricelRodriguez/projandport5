@@ -17,7 +17,8 @@ class App extends Component {
       ingredients: [],
       btnDisabled: true,
       recipes: [],
-      recipe: 0
+      recipe: 0,
+      loaded: false
     }
 
     this.displayHome = this.displayHome.bind(this);
@@ -98,6 +99,8 @@ class App extends Component {
     })
     .then(function(data){
       console.log(data);
+      _this.setState({page: 'recipes', loaded:false});
+
       let recipeList = [];
 
       for(let i = 0; i < data.length; i++){
@@ -109,12 +112,12 @@ class App extends Component {
         return <RecipeCard key={index} select={recipe.select} id={recipe.id} title={recipe.title} image={recipe.image}/>
       });
 
-      _this.setState({recipes: recipes});
-      _this.setState({page: 'recipes'});
+      _this.setState({recipes: recipes, loaded: true});
     })
     .catch(function(error){
       console.log('Something went wrong: ' + error);
     })
+
   }
 
   selectRecipe(e, id){
@@ -189,7 +192,7 @@ class App extends Component {
         }
 
         {this.state.page === 'recipes' &&
-          <Recipes recipes={this.state.recipes}/>
+          <Recipes loaded={this.state.loaded} recipes={this.state.recipes}/>
         }
 
         {this.state.page === 'recipeInfo' &&
