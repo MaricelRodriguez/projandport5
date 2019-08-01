@@ -10,20 +10,25 @@ class Recipe extends Component {
       backgroundImage: 'url(' + this.props.image + ')'
     }
     return (
-      <div className='paddingAround' data-id={this.props.id}>
+      <div className='fullHeight instructionFlex' data-id={this.props.id}>
         <div style={bgStyle}>
-          <Header/>
-          <div>
-            <p>{this.props.time}</p>
-            <h3>{this.props.title}</h3>
+          <div className='overlay paddingAround'>
+            <Header/>
+            <div className='recipeTitle'>
+              <p>{this.props.time} minutes</p>
+              <h3>{this.props.title}</h3>
+            </div>
           </div>
         </div>
-        <ul>
-          {this.props.ingredientList}
-        </ul>
-        <ol>
-          {this.props.instructionList}
-        </ol>
+
+        <div className='paddingAround instructions'>
+          <ul>
+            {this.props.ingredientList}
+          </ul>
+          <ol>
+            {this.props.instructionList}
+          </ol>
+        </div>
       </div>
     );
   }
