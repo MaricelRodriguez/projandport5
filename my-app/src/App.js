@@ -12,47 +12,40 @@ class App extends Component {
   constructor(props){
     super(props);
 
+    //Sets the default states
     this.state = {
       page: 'home',
       ingredients: [],
       btnDisabled: true,
       recipes: [],
-      recipe: 0
+      recipe: 0,
+      loaded: false
     }
 
+    //Binds 'this' to each function to avoid issues.
     this.displayHome = this.displayHome.bind(this);
     this.displayForm = this.displayForm.bind(this);
     this.addIngredient = this.addIngredient.bind(this);
     this.searchRecipe = this.searchRecipe.bind(this);
     this.selectRecipe = this.selectRecipe.bind(this);
+    this.startOver = this.startOver.bind(this);
   }
 
+  /* displayHome: Changes the page state to display the home page. */
   displayHome(){
     this.setState({page: 'home'});
-    /*
-    console.log('Displaying Home');
-    //CHANGE STATE INSTEAD
-    ReactDOM.render(
-      <Home onclick={this.displayForm}/>,
-      document.querySelector('#container')
-    );
-    */
   }
 
+  /* displayForm: Changes the page state to display the ingredients page. */
   displayForm(){
     this.setState({page: 'ingredients'});
-    /*
-    let container = document.querySelector('#container');
-    console.log(this);
-
-    ReactDOM.render(
-      <Form ingredients={this.state.ingredients} submit={this.addIngredient}/>, container
-    );
-    */
   }
 
+  /* addIngredient: Retrieves the entered ingredient value and adds it to the
+  ingredients list. */
   addIngredient(e){
     e.preventDefault();
+
     let ingredientList = this.state.ingredients;
     let newIngredient = document.querySelector('#addIngredient').value.trim();
     ingredientList.push(newIngredient);
@@ -64,6 +57,14 @@ class App extends Component {
     this.setState({ingredients: ingredientList});
   }
 
+  /* startOver: Changes the page state to display the ingredients page, removes
+  any existing ingredients, and disables the button on that page via the state. */
+  startOver(){
+    this.setState({page: 'ingredients', ingredients: [], btnDisabled: true});
+  }
+
+  /* searchRecipe: Communicates with the recipes API and returns recipes based
+  on the ingredients given. */
   searchRecipe(e){
     e.preventDefault();
 
@@ -98,6 +99,8 @@ class App extends Component {
     })
     .then(function(data){
       console.log(data);
+      _this.setState({page: 'recipes', loaded:false});
+
       let recipeList = [];
 
       for(let i = 0; i < data.length; i++){
@@ -109,14 +112,16 @@ class App extends Component {
         return <RecipeCard key={index} select={recipe.select} id={recipe.id} title={recipe.title} image={recipe.image}/>
       });
 
-      _this.setState({recipes: recipes});
-      _this.setState({page: 'recipes'});
+      _this.setState({recipes: recipes, loaded: true});
     })
     .catch(function(error){
       console.log('Something went wrong: ' + error);
     })
+
   }
 
+  /* selectRecipe: Communicates with the recipes API and returns specific recipe
+  data based on the recipe ID given. */
   selectRecipe(e, id){
     e.preventDefault();
 
@@ -163,10 +168,8 @@ class App extends Component {
         instructionsList.push(instructionItem);
       }
 
-      let r = <Recipe data-id={data.id} title={data.title} time={data.readyInMinutes} image={data.image} ingredientList={ingredientList} instructionList={instructionsList} />;
+      let r = <Recipe startOver={_this.startOver} data-id={data.id} title={data.title} time={data.readyInMinutes} image={data.image} ingredientList={ingredientList} instructionList={instructionsList} />;
 
-      console.log('In Fetch this: ' + this);
-      console.log('In Fetch _this: ' + _this);
       _this.setState({recipe: r});
       _this.setState({page: 'recipeInfo'});
     })
@@ -185,11 +188,11 @@ class App extends Component {
         }
 
         {this.state.page === 'ingredients' &&
-          <Form disabled={this.state.btnDisabled} ingredients={this.state.ingredients} submit={this.addIngredient} search={this.searchRecipe}/>
+          <Form startOver={this.startOver} removeIngredient={this.removeIngredient} disabled={this.state.btnDisabled} ingredients={this.state.ingredients} submit={this.addIngredient} search={this.searchRecipe}/>
         }
 
         {this.state.page === 'recipes' &&
-          <Recipes recipes={this.state.recipes}/>
+          <Recipes startOver={this.startOver} loaded={this.state.loaded} recipes={this.state.recipes}/>
         }
 
         {this.state.page === 'recipeInfo' &&

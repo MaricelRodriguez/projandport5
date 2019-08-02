@@ -1,0 +1,28 @@
+.overlay{
+  background-color: rgba(10,9,12,.50);
+}
+
+.recipeTitle{
+  margin-top: 50px;
+}
+
+.instructions{
+  background-color: #BEBCB7;
+  color: #0A090C;
+  flex-grow: 2;
+  list-style-position: inside;
+}
+
+.instructions ul{
+  padding-bottom: 50px;
+}
+
+.instructions ol li{
+  padding-bottom: 10px;
+}
+
+.instructionFlex{
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}

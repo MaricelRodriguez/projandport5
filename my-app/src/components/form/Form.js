@@ -10,8 +10,8 @@ class Form extends Component {
 
   render(){
     return (
-      <div className='flexWrapper'>
-        <Header/>
+      <div className='flexWrapper fullHeight paddingAround'>
+        <Header startOver={this.props.startOver}/>
         <div className='wrapper'>
           <h2>Add Ingredients</h2>
           <form onSubmit={this.props.submit}>

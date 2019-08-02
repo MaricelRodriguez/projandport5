@@ -8,11 +8,3 @@
   flex-direction: row;
   margin: 5px;
 }
-
-.btnWrap{
-  display: none;
-}
-
-.ingredient:hover > .btnWrap{
-  display: block;
-}
