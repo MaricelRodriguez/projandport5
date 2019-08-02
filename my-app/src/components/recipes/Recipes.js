@@ -20,7 +20,7 @@ class Recipes extends Component {
               <div>{this.props.recipes}</div>
             }
           </div>
-          <Btn size='largeBtn' type='button' text='Back'/>
+          <Btn onclick={this.props.startOver} size='largeBtn' type='button' text='Back'/>
         </div>
     );
   }
