@@ -12,6 +12,7 @@ class App extends Component {
   constructor(props){
     super(props);
 
+    //Sets the default states
     this.state = {
       page: 'home',
       ingredients: [],
@@ -21,6 +22,7 @@ class App extends Component {
       loaded: false
     }
 
+    //Binds 'this' to each function to avoid issues.
     this.displayHome = this.displayHome.bind(this);
     this.displayForm = this.displayForm.bind(this);
     this.addIngredient = this.addIngredient.bind(this);
@@ -29,32 +31,21 @@ class App extends Component {
     this.startOver = this.startOver.bind(this);
   }
 
+  /* displayHome: Changes the page state to display the home page. */
   displayHome(){
     this.setState({page: 'home'});
-    /*
-    console.log('Displaying Home');
-    //CHANGE STATE INSTEAD
-    ReactDOM.render(
-      <Home onclick={this.displayForm}/>,
-      document.querySelector('#container')
-    );
-    */
   }
 
+  /* displayForm: Changes the page state to display the ingredients page. */
   displayForm(){
     this.setState({page: 'ingredients'});
-    /*
-    let container = document.querySelector('#container');
-    console.log(this);
-
-    ReactDOM.render(
-      <Form ingredients={this.state.ingredients} submit={this.addIngredient}/>, container
-    );
-    */
   }
 
+  /* addIngredient: Retrieves the entered ingredient value and adds it to the
+  ingredients list. */
   addIngredient(e){
     e.preventDefault();
+
     let ingredientList = this.state.ingredients;
     let newIngredient = document.querySelector('#addIngredient').value.trim();
     ingredientList.push(newIngredient);
@@ -66,11 +57,14 @@ class App extends Component {
     this.setState({ingredients: ingredientList});
   }
 
+  /* startOver: Changes the page state to display the ingredients page, removes
+  any existing ingredients, and disables the button on that page via the state. */
   startOver(){
-    this.setState({page: 'ingredients', ingredients: []});
-    this.setState({btnDisabled: true});
+    this.setState({page: 'ingredients', ingredients: [], btnDisabled: true});
   }
 
+  /* searchRecipe: Communicates with the recipes API and returns recipes based
+  on the ingredients given. */
   searchRecipe(e){
     e.preventDefault();
 
@@ -126,6 +120,8 @@ class App extends Component {
 
   }
 
+  /* selectRecipe: Communicates with the recipes API and returns specific recipe
+  data based on the recipe ID given. */
   selectRecipe(e, id){
     e.preventDefault();
 
