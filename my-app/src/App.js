@@ -65,6 +65,11 @@ class App extends Component {
     this.setState({ingredients: ingredientList});
   }
 
+  removeIngredient(e){
+    console.log('Removing ingredient:');
+    console.log(e);
+  }
+
   searchRecipe(e){
     e.preventDefault();
 
@@ -188,7 +193,7 @@ class App extends Component {
         }
 
         {this.state.page === 'ingredients' &&
-          <Form disabled={this.state.btnDisabled} ingredients={this.state.ingredients} submit={this.addIngredient} search={this.searchRecipe}/>
+          <Form removeIngredient={this.removeIngredient} disabled={this.state.btnDisabled} ingredients={this.state.ingredients} submit={this.addIngredient} search={this.searchRecipe}/>
         }
 
         {this.state.page === 'recipes' &&
