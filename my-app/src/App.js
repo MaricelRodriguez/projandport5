@@ -26,6 +26,7 @@ class App extends Component {
     this.addIngredient = this.addIngredient.bind(this);
     this.searchRecipe = this.searchRecipe.bind(this);
     this.selectRecipe = this.selectRecipe.bind(this);
+    this.startOver = this.startOver.bind(this);
   }
 
   displayHome(){
@@ -65,9 +66,9 @@ class App extends Component {
     this.setState({ingredients: ingredientList});
   }
 
-  removeIngredient(e){
-    console.log('Removing ingredient:');
-    console.log(e);
+  startOver(){
+    this.setState({page: 'ingredients', ingredients: []});
+    this.setState({btnDisabled: true});
   }
 
   searchRecipe(e){
@@ -171,10 +172,8 @@ class App extends Component {
         instructionsList.push(instructionItem);
       }
 
-      let r = <Recipe data-id={data.id} title={data.title} time={data.readyInMinutes} image={data.image} ingredientList={ingredientList} instructionList={instructionsList} />;
+      let r = <Recipe startOver={_this.startOver} data-id={data.id} title={data.title} time={data.readyInMinutes} image={data.image} ingredientList={ingredientList} instructionList={instructionsList} />;
 
-      console.log('In Fetch this: ' + this);
-      console.log('In Fetch _this: ' + _this);
       _this.setState({recipe: r});
       _this.setState({page: 'recipeInfo'});
     })
@@ -193,11 +192,11 @@ class App extends Component {
         }
 
         {this.state.page === 'ingredients' &&
-          <Form removeIngredient={this.removeIngredient} disabled={this.state.btnDisabled} ingredients={this.state.ingredients} submit={this.addIngredient} search={this.searchRecipe}/>
+          <Form startOver={this.startOver} removeIngredient={this.removeIngredient} disabled={this.state.btnDisabled} ingredients={this.state.ingredients} submit={this.addIngredient} search={this.searchRecipe}/>
         }
 
         {this.state.page === 'recipes' &&
-          <Recipes loaded={this.state.loaded} recipes={this.state.recipes}/>
+          <Recipes startOver={this.startOver} loaded={this.state.loaded} recipes={this.state.recipes}/>
         }
 
         {this.state.page === 'recipeInfo' &&

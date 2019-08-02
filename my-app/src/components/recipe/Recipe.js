@@ -13,7 +13,7 @@ class Recipe extends Component {
       <div className='fullHeight instructionFlex' data-id={this.props.id}>
         <div style={bgStyle}>
           <div className='overlay paddingAround'>
-            <Header/>
+            <Header startOver={this.props.startOver}/>
             <div className='recipeTitle'>
               <p>{this.props.time} minutes</p>
               <h3>{this.props.title}</h3>

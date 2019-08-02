@@ -11,7 +11,7 @@ class Recipes extends Component {
     return (
 
         <div className=' fullHeight flexWrapper paddingAround'>
-          <Header/>
+          <Header startOver={this.props.startOver}/>
           <div className='bgWrap'>
             {this.props.loaded === false &&
               <Loader/>
